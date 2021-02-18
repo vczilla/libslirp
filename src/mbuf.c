@@ -48,6 +48,18 @@ void m_cleanup(Slirp *slirp)
         g_free(m);
         m = next;
     }
+    m = (struct mbuf *)slirp->if_batchq.qh_link;
+    while ((struct quehead *)m != &slirp->if_batchq) {
+        next = m->m_next;
+        g_free(m);
+        m = next;
+    }
+    m = (struct mbuf *)slirp->if_fastq.qh_link;
+    while ((struct quehead *)m != &slirp->if_fastq) {
+        next = m->m_next;
+        g_free(m);
+        m = next;
+    }
 }
 
 /*
