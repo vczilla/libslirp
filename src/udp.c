@@ -371,7 +371,6 @@ struct socket *udpx_listen(Slirp *slirp,
     socklen_t addrlen;
     int save_errno;
 
-    memset(&addr, 0, sizeof(addr));
     so = socreate(slirp);
     so->s = slirp_socket(haddr->sa_family, SOCK_DGRAM, 0);
     if (so->s < 0) {
