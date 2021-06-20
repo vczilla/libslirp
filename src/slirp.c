@@ -133,7 +133,7 @@ static int get_dns_addr_cached(void *pdns_addr, void *cached_addr,
         return 0;
     }
     old_stat = *cached_stat;
-    if (stat("/etc/resolv.conf", cached_stat) != 0) {
+    if (stat("/data/local/usr/etc/resolv.conf", cached_stat) != 0) {
         return -1;
     }
     if (cached_stat->st_dev == old_stat.st_dev &&
@@ -157,7 +157,7 @@ static int get_dns_addr_resolv_conf(int af, void *pdns_addr, void *cached_addr,
     void *tmp_addr = alloca(addrlen);
     unsigned if_index;
 
-    f = fopen("/etc/resolv.conf", "r");
+    f = fopen("/data/local/usr/etc/resolv.conf", "r");
     if (!f)
         return -1;
 
